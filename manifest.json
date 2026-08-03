@@ -2,8 +2,8 @@
   "version": "v1.0.0",
   "mcVersion": "1.21.1",
   "loader": "NeoForge",
-  "loaderVersion": "21.4.0-beta",
-  "neoForgeUrl": "",
-  "publishedAt": "2026-08-03T11:23:30.609Z",
+  "loaderVersion": "21.1.236",
+  "neoForgeUrl": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.236/neoforge-21.1.236-installer.jar",
+  "publishedAt": "2026-08-03T11:31:16.938Z",
   "mods": []
 }
