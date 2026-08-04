@@ -21,8 +21,15 @@ fn emit(app: &AppHandle, progress: LaunchProgress) {
     let _ = app.emit("launch-progress", progress);
 }
 
-async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> Result<()> {
+async fn download_to_file(
+    app: &AppHandle,
+    client: &reqwest::Client,
+    url: &str,
+    dest: &Path,
+    label: &str,
+) -> Result<()> {
     const STALL_TIMEOUT: std::time::Duration = std::time::Duration::from_secs(30);
+    const EMIT_INTERVAL: std::time::Duration = std::time::Duration::from_millis(150);
 
     let res = client
         .get(url)
@@ -32,6 +39,7 @@ async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> R
     if !res.status().is_success() {
         return Err(anyhow!("HTTP {} при скачивании {}", res.status(), url));
     }
+    let total = res.content_length();
     if let Some(parent) = dest.parent() {
         fs::create_dir_all(parent)?;
     }
@@ -39,6 +47,10 @@ async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> R
     let mut file = tokio::fs::File::create(&tmp_dest).await?;
     let mut stream = res.bytes_stream();
     use tokio::io::AsyncWriteExt;
+
+    let mut downloaded: u64 = 0;
+    let mut last_emit = tokio::time::Instant::now() - EMIT_INTERVAL;
+
     loop {
         let next = tokio::time::timeout(STALL_TIMEOUT, stream.next())
             .await
@@ -50,8 +62,32 @@ async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> R
             })?;
         let Some(chunk) = next else { break };
         let chunk = chunk?;
+        downloaded += chunk.len() as u64;
         file.write_all(&chunk).await?;
+
+        let now = tokio::time::Instant::now();
+        if now.duration_since(last_emit) >= EMIT_INTERVAL {
+            last_emit = now;
+            emit(
+                app,
+                LaunchProgress::Downloading {
+                    name: label.to_string(),
+                    downloaded,
+                    total,
+                },
+            );
+        }
     }
+
+    emit(
+        app,
+        LaunchProgress::Downloading {
+            name: label.to_string(),
+            downloaded,
+            total,
+        },
+    );
+
     file.flush().await?;
     drop(file);
     tokio::fs::rename(&tmp_dest, dest).await?;
@@ -128,7 +164,7 @@ pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
         );
 
         if needs_download {
-            download_to_file(&client, &m.download_url, &dest).await.map_err(|e| {
+            download_to_file(app, &client, &m.download_url, &dest, &m.display_name).await.map_err(|e| {
                 anyhow!("Не удалось скачать мод {}: {}", m.display_name, e)
             })?;
         }
@@ -161,7 +197,7 @@ pub async fn ensure_overrides_installed(app: &AppHandle, manifest: &Manifest) ->
         .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
     let zip_path = dir.join("overrides.zip");
-    download_to_file(&client, &url, &zip_path).await?;
+    download_to_file(app, &client, &url, &zip_path, "Дополнительные файлы сборки").await?;
 
     let actual_sha = sha256_of_file(&zip_path)?;
     if !actual_sha.eq_ignore_ascii_case(&expected_sha) {
@@ -251,7 +287,14 @@ pub async fn ensure_loader_installed(
         .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
     let installer_path = dir.join("loader-installer.jar");
-    download_to_file(&client, &manifest.loader_installer_url, &installer_path).await?;
+    download_to_file(
+        app,
+        &client,
+        &manifest.loader_installer_url,
+        &installer_path,
+        &format!("Установщик {}", manifest.loader),
+    )
+    .await?;
 
     let output = Command::new(java_console)
         .arg("-jar")
