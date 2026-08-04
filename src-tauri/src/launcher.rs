@@ -1,5 +1,4 @@
 use crate::config::{SERVER_IP, SERVER_PORT};
-use crate::java;
 use crate::models::{LaunchProgress, LaunchSettings, Manifest};
 use anyhow::{anyhow, Result};
 use futures_util::StreamExt;
@@ -22,8 +21,6 @@ fn emit(app: &AppHandle, progress: LaunchProgress) {
     let _ = app.emit("launch-progress", progress);
 }
 
-/// Downloads a URL to `dest`, streaming to disk so large mod/loader files
-/// don't need to be buffered fully in memory.
 async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> Result<()> {
     let res = client.get(url).send().await?;
     if !res.status().is_success() {
@@ -53,10 +50,6 @@ fn sha256_of_file(path: &Path) -> Result<String> {
     Ok(hex::encode(hasher.finalize()))
 }
 
-/// Compares the local `mods/` folder against the manifest: deletes mods
-/// that shouldn't be there, downloads missing ones, re-downloads ones
-/// whose SHA-256 doesn't match. Mirrors the logic used by the .bat/.sh
-/// generator, but implemented natively instead of shelling out.
 pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
     let dir = game_dir()?;
     let mods_dir = dir.join("mods");
@@ -76,7 +69,6 @@ pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
     let server_names: std::collections::HashSet<&str> =
         manifest.mods.iter().map(|m| m.file_name.as_str()).collect();
 
-    // 1) Delete mods that are local but no longer in the manifest.
     for (name, path) in local.iter() {
         if !server_names.contains(name.as_str()) {
             emit(
@@ -89,7 +81,6 @@ pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
         }
     }
 
-    // 2) Download missing / mismatched mods.
     let client = reqwest::Client::builder()
         .user_agent("worldsend-launcher")
         .build()?;
@@ -130,10 +121,82 @@ pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
     Ok(())
 }
 
-/// Ensures NeoForge/Forge/Fabric is installed for the manifest's loader
-/// version by running the official installer jar with --installClient.
-/// Uses a marker file so it only runs once per loader version.
-pub async fn ensure_loader_installed(app: &AppHandle, manifest: &Manifest) -> Result<()> {
+pub async fn ensure_overrides_installed(app: &AppHandle, manifest: &Manifest) -> Result<()> {
+    let (url, expected_sha) = match (&manifest.overrides_url, &manifest.overrides_sha256) {
+        (Some(u), Some(s)) if !u.trim().is_empty() => (u.clone(), s.clone()),
+        _ => return Ok(()),
+    };
+
+    let dir = game_dir()?;
+    let marker = dir.join(format!(".overrides-{}", &expected_sha[..expected_sha.len().min(16)]));
+    if marker.exists() {
+        return Ok(());
+    }
+
+    emit(
+        app,
+        LaunchProgress::InstallingOverrides {
+            message: "Установка дополнительных файлов сборки...".into(),
+        },
+    );
+
+    let client = reqwest::Client::builder()
+        .user_agent("worldsend-launcher")
+        .build()?;
+    let zip_path = dir.join("overrides.zip");
+    download_to_file(&client, &url, &zip_path).await?;
+
+    let actual_sha = sha256_of_file(&zip_path)?;
+    if !actual_sha.eq_ignore_ascii_case(&expected_sha) {
+        let _ = fs::remove_file(&zip_path);
+        return Err(anyhow!(
+            "Контрольная сумма overrides.zip не совпадает — файл повреждён или подменён"
+        ));
+    }
+
+    let file = std::fs::File::open(&zip_path)?;
+    let mut archive = zip::ZipArchive::new(file)
+        .map_err(|e| anyhow!("overrides.zip повреждён: {}", e))?;
+
+    for i in 0..archive.len() {
+        let mut entry = archive.by_index(i)?;
+        let Some(rel_path) = entry.enclosed_name() else {
+            continue;
+        };
+        let out_path = dir.join(rel_path);
+
+        if entry.is_dir() {
+            fs::create_dir_all(&out_path)?;
+            continue;
+        }
+        if let Some(parent) = out_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+        let mut out_file = fs::File::create(&out_path)?;
+        std::io::copy(&mut entry, &mut out_file)?;
+    }
+
+    let _ = fs::remove_file(&zip_path);
+
+    if let Ok(entries) = fs::read_dir(&dir) {
+        for entry in entries.flatten() {
+            let name = entry.file_name();
+            let name = name.to_string_lossy();
+            if name.starts_with(".overrides-") {
+                let _ = fs::remove_file(entry.path());
+            }
+        }
+    }
+    fs::write(&marker, b"ok")?;
+
+    Ok(())
+}
+
+pub async fn ensure_loader_installed(
+    app: &AppHandle,
+    manifest: &Manifest,
+    java_console: &Path,
+) -> Result<()> {
     let dir = game_dir()?;
     let marker = dir.join(format!(
         ".loader-{}-{}-{}",
@@ -144,8 +207,6 @@ pub async fn ensure_loader_installed(app: &AppHandle, manifest: &Manifest) -> Re
     }
 
     if manifest.loader_installer_url.trim().is_empty() {
-        // No installer URL configured (e.g. Vanilla, or already installed
-        // manually) — nothing to do, just mark as done.
         fs::write(&marker, b"manual")?;
         return Ok(());
     }
@@ -166,27 +227,34 @@ pub async fn ensure_loader_installed(app: &AppHandle, manifest: &Manifest) -> Re
     let installer_path = dir.join("loader-installer.jar");
     download_to_file(&client, &manifest.loader_installer_url, &installer_path).await?;
 
-    let java = java::find_java_console()
-        .ok_or_else(|| anyhow!("Java не найдена. Установите Java {}+", crate::config::JAVA_MIN_VERSION))?;
-
-    let status = Command::new(&java)
+    let output = Command::new(java_console)
         .arg("-jar")
         .arg(&installer_path)
         .arg("--installClient")
         .arg(&dir)
         .current_dir(&dir)
-        .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .status()
+        .output()
         .map_err(|e| anyhow!("Не удалось запустить установщик ядра: {}", e))?;
 
     let _ = fs::remove_file(&installer_path);
 
-    if !status.success() {
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        let combined = format!("{stdout}\n{stderr}");
+        let tail: String = combined
+            .chars()
+            .rev()
+            .take(600)
+            .collect::<Vec<_>>()
+            .into_iter()
+            .rev()
+            .collect();
         return Err(anyhow!(
-            "Установщик {} завершился с ошибкой (код {:?})",
+            "Установщик {} завершился с ошибкой (код {:?}).\n{}",
             manifest.loader,
-            status.code()
+            output.status.code(),
+            tail.trim()
         ));
     }
 
@@ -202,18 +270,14 @@ fn substitute(template: &str, vars: &HashMap<String, String>) -> String {
     out
 }
 
-/// Builds and spawns the Minecraft process (detached from the launcher),
-/// connecting automatically to the configured server. Uses the real
-/// version JSON profile (vanilla merged with the Forge/NeoForge child
-/// profile) so the JVM args, module path and main class are exactly what
-/// the loader installer generated — not a guess.
-pub fn launch_game(dir: &Path, manifest: &Manifest, settings: &LaunchSettings) -> Result<()> {
+pub fn launch_game(
+    dir: &Path,
+    manifest: &Manifest,
+    settings: &LaunchSettings,
+    java: &Path,
+) -> Result<()> {
     let profile_id = crate::version_profile::find_profile_id(dir, &manifest.mc_version)?;
     let profile = crate::version_profile::merge_profile(dir, &profile_id)?;
-
-    let java = java::find_java().ok_or_else(|| {
-        anyhow!("Java не найдена. Установите Java {}+", crate::config::JAVA_MIN_VERSION)
-    })?;
 
     let ram_mb = settings.ram_gb * 1024;
     let ram_min = (ram_mb / 2).max(1024);
@@ -255,7 +319,7 @@ pub fn launch_game(dir: &Path, manifest: &Manifest, settings: &LaunchSettings) -
     vars.insert("library_directory".into(), dir.join("libraries").display().to_string());
     vars.insert("classpath_separator".into(), classpath_sep.into());
 
-    let mut cmd = Command::new(&java);
+    let mut cmd = Command::new(java);
     cmd.arg(format!("-Xmx{}M", ram_mb))
         .arg(format!("-Xms{}M", ram_min))
         .arg("-XX:+UseG1GC")
@@ -266,9 +330,6 @@ pub fn launch_game(dir: &Path, manifest: &Manifest, settings: &LaunchSettings) -
         .arg("-Duser.language=ru")
         .arg("-Duser.country=RU");
 
-    // JVM args from the merged profile (module path, --add-opens, etc for
-    // modded launches). Falls back to a plain -cp if the profile had none
-    // (older/vanilla-only json).
     if profile.jvm_args.is_empty() {
         cmd.arg("-cp").arg(&classpath);
     } else {
@@ -280,7 +341,6 @@ pub fn launch_game(dir: &Path, manifest: &Manifest, settings: &LaunchSettings) -
     cmd.arg(&profile.main_class);
 
     if profile.game_args.is_empty() {
-        // Legacy/vanilla fallback argument set.
         cmd.arg("--username")
             .arg(&settings.nickname)
             .arg("--version")
