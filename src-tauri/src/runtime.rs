@@ -109,11 +109,49 @@ pub async fn ensure_java_installed(app: &AppHandle) -> Result<(PathBuf, PathBuf)
             res.status()
         ));
     }
-    let bytes = tokio::time::timeout(std::time::Duration::from_secs(300), res.bytes())
-        .await
-        .map_err(|_| {
-            anyhow!("Загрузка Java зависла (нет ответа 5 минут) — проверьте интернет-соединение")
-        })??;
+    let total = res.content_length();
+    let bytes = {
+        use futures_util::StreamExt;
+        const STALL_TIMEOUT: std::time::Duration = std::time::Duration::from_secs(30);
+        const EMIT_INTERVAL: std::time::Duration = std::time::Duration::from_millis(150);
+
+        let mut stream = res.bytes_stream();
+        let mut buf: Vec<u8> = Vec::new();
+        let mut last_emit = tokio::time::Instant::now() - EMIT_INTERVAL;
+
+        loop {
+            let next = tokio::time::timeout(STALL_TIMEOUT, stream.next())
+                .await
+                .map_err(|_| {
+                    anyhow!("Загрузка Java зависла (нет данных 30с) — проверьте интернет-соединение")
+                })?;
+            let Some(chunk) = next else { break };
+            let chunk = chunk?;
+            buf.extend_from_slice(&chunk);
+
+            let now = tokio::time::Instant::now();
+            if now.duration_since(last_emit) >= EMIT_INTERVAL {
+                last_emit = now;
+                emit(
+                    app,
+                    LaunchProgress::Downloading {
+                        name: format!("Java {}", JAVA_MIN_VERSION),
+                        downloaded: buf.len() as u64,
+                        total,
+                    },
+                );
+            }
+        }
+        emit(
+            app,
+            LaunchProgress::Downloading {
+                name: format!("Java {}", JAVA_MIN_VERSION),
+                downloaded: buf.len() as u64,
+                total,
+            },
+        );
+        buf
+    };
 
     let extract_tmp = root.join("_extracting");
     if extract_tmp.exists() {
