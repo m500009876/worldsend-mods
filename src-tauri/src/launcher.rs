@@ -205,7 +205,13 @@ pub async fn ensure_loader_installed(
     if marker.exists() {
         return Ok(());
     }
-
+    let profiles_path = dir.join("launcher_profiles.json");
+    if !profiles_path.exists() {
+        fs::write(
+            &profiles_path,
+            br#"{"profiles":{},"selectedProfile":"","clientToken":"","authenticationDatabase":{},"settings":{},"version":3}"#,
+        )?;
+    }
     if manifest.loader_installer_url.trim().is_empty() {
         fs::write(&marker, b"manual")?;
         return Ok(());
