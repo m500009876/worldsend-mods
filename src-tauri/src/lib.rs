@@ -4,6 +4,7 @@ mod java;
 mod launcher;
 mod mc_ping;
 mod models;
+mod runtime;
 mod version_profile;
 
 use models::{LaunchProgress, LaunchSettings, Manifest, NewsItem, ServerStatus};
@@ -29,7 +30,16 @@ async fn get_server_status() -> Result<ServerStatus, String> {
 
 #[tauri::command]
 fn check_java() -> bool {
-    java::find_java().is_some()
+    if java::find_java().is_some() {
+        return true;
+    }
+    match launcher::game_dir() {
+        Ok(dir) => dir
+            .join("runtime")
+            .join(format!("jdk-{}", config::JAVA_MIN_VERSION))
+            .exists(),
+        Err(_) => false,
+    }
 }
 
 #[tauri::command]
@@ -73,14 +83,15 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
         .await
         .map_err(|e| emit_err(&app, format!("Не удалось получить сборку: {}", e)))?;
 
-    if java::find_java().is_none() {
-        return Err(emit_err(
-            &app,
-            format!("Java не найдена. Установите Java {}+", config::JAVA_MIN_VERSION),
-        ));
-    }
+    let (java_windowed, java_console) = runtime::ensure_java_installed(&app)
+        .await
+        .map_err(|e| emit_err(&app, e.to_string()))?;
 
-    launcher::ensure_loader_installed(&app, &manifest)
+    launcher::ensure_loader_installed(&app, &manifest, &java_console)
+        .await
+        .map_err(|e| emit_err(&app, e.to_string()))?;
+
+    launcher::ensure_overrides_installed(&app, &manifest)
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
@@ -91,7 +102,7 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
     let _ = app.emit("launch-progress", LaunchProgress::Ready);
 
     let dir = launcher::game_dir().map_err(|e| emit_err(&app, e.to_string()))?;
-    launcher::launch_game(&dir, &manifest, &settings)
+    launcher::launch_game(&dir, &manifest, &settings, &java_windowed)
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
     let _ = app.emit("launch-progress", LaunchProgress::Launching);
