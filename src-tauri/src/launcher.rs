@@ -22,7 +22,13 @@ fn emit(app: &AppHandle, progress: LaunchProgress) {
 }
 
 async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> Result<()> {
-    let res = client.get(url).send().await?;
+    const STALL_TIMEOUT: std::time::Duration = std::time::Duration::from_secs(30);
+
+    let res = client
+        .get(url)
+        .send()
+        .await
+        .map_err(|e| anyhow!("Не удалось подключиться к {}: {}", url, e))?;
     if !res.status().is_success() {
         return Err(anyhow!("HTTP {} при скачивании {}", res.status(), url));
     }
@@ -33,7 +39,16 @@ async fn download_to_file(client: &reqwest::Client, url: &str, dest: &Path) -> R
     let mut file = tokio::fs::File::create(&tmp_dest).await?;
     let mut stream = res.bytes_stream();
     use tokio::io::AsyncWriteExt;
-    while let Some(chunk) = stream.next().await {
+    loop {
+        let next = tokio::time::timeout(STALL_TIMEOUT, stream.next())
+            .await
+            .map_err(|_| {
+                anyhow!(
+                    "Скачивание зависло (нет данных {}с) — проверьте интернет-соединение и попробуйте снова",
+                    STALL_TIMEOUT.as_secs()
+                )
+            })?;
+        let Some(chunk) = next else { break };
         let chunk = chunk?;
         file.write_all(&chunk).await?;
     }
@@ -83,6 +98,7 @@ pub async fn sync_mods(app: &AppHandle, manifest: &Manifest) -> Result<()> {
 
     let client = reqwest::Client::builder()
         .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
 
     let total = manifest.mods.len();
@@ -142,6 +158,7 @@ pub async fn ensure_overrides_installed(app: &AppHandle, manifest: &Manifest) ->
 
     let client = reqwest::Client::builder()
         .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
     let zip_path = dir.join("overrides.zip");
     download_to_file(&client, &url, &zip_path).await?;
@@ -205,6 +222,7 @@ pub async fn ensure_loader_installed(
     if marker.exists() {
         return Ok(());
     }
+
     let profiles_path = dir.join("launcher_profiles.json");
     if !profiles_path.exists() {
         fs::write(
@@ -212,6 +230,7 @@ pub async fn ensure_loader_installed(
             br#"{"profiles":{},"selectedProfile":"","clientToken":"","authenticationDatabase":{},"settings":{},"version":3}"#,
         )?;
     }
+
     if manifest.loader_installer_url.trim().is_empty() {
         fs::write(&marker, b"manual")?;
         return Ok(());
@@ -229,6 +248,7 @@ pub async fn ensure_loader_installed(
 
     let client = reqwest::Client::builder()
         .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
     let installer_path = dir.join("loader-installer.jar");
     download_to_file(&client, &manifest.loader_installer_url, &installer_path).await?;
