@@ -50,6 +50,10 @@ export default function App() {
           setProgressLabel(p.data.message);
           setProgressPct(5);
           break;
+        case "InstallingJava":
+          setProgressLabel(p.data.message);
+          setProgressPct(10);
+          break;
         case "InstallingLoader":
           setProgressLabel(p.data.message);
           setProgressPct(15);
