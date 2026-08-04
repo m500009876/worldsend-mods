@@ -100,6 +100,7 @@ pub async fn ensure_java_installed(app: &AppHandle) -> Result<(PathBuf, PathBuf)
     let url = adoptium_download_url();
     let client = reqwest::Client::builder()
         .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
         .build()?;
     let res = client.get(&url).send().await?;
     if !res.status().is_success() {
@@ -108,7 +109,11 @@ pub async fn ensure_java_installed(app: &AppHandle) -> Result<(PathBuf, PathBuf)
             res.status()
         ));
     }
-    let bytes = res.bytes().await?;
+    let bytes = tokio::time::timeout(std::time::Duration::from_secs(300), res.bytes())
+        .await
+        .map_err(|_| {
+            anyhow!("Загрузка Java зависла (нет ответа 5 минут) — проверьте интернет-соединение")
+        })??;
 
     let extract_tmp = root.join("_extracting");
     if extract_tmp.exists() {
