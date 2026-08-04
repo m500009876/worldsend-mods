@@ -52,6 +52,7 @@ function fromRust(s: { nickname: string; ram_gb: number }): LaunchSettings {
 
 export type LaunchProgress =
   | { stage: "Checking"; data: { message: string } }
+  | { stage: "InstallingJava"; data: { message: string } }
   | { stage: "InstallingLoader"; data: { message: string } }
   | { stage: "SyncingMods"; data: { current: number; total: number; name: string } }
   | { stage: "DeletingMod"; data: { name: string } }
