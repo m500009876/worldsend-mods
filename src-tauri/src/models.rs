@@ -36,6 +36,10 @@ pub struct Manifest {
     #[serde(rename = "publishedAt", default)]
     pub published_at: String,
     pub mods: Vec<ModEntry>,
+    #[serde(rename = "overridesUrl", default)]
+    pub overrides_url: Option<String>,
+    #[serde(rename = "overridesSha256", default)]
+    pub overrides_sha256: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -89,12 +93,13 @@ impl Default for LaunchSettings {
     }
 }
 
-// ── Progress events sent to the frontend during launch ────────────────
 #[derive(Debug, Clone, Serialize)]
 #[serde(tag = "stage", content = "data")]
 pub enum LaunchProgress {
     Checking { message: String },
+    InstallingJava { message: String },
     InstallingLoader { message: String },
+    InstallingOverrides { message: String },
     SyncingMods { current: usize, total: usize, name: String },
     DeletingMod { name: String },
     Ready,
