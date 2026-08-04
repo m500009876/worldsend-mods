@@ -101,6 +101,7 @@ pub enum LaunchProgress {
     InstallingLoader { message: String },
     InstallingOverrides { message: String },
     SyncingMods { current: usize, total: usize, name: String },
+    Downloading { name: String, downloaded: u64, total: Option<u64> },
     DeletingMod { name: String },
     Ready,
     Launching,
