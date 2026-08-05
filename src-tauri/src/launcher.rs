@@ -339,12 +339,18 @@ fn substitute(template: &str, vars: &HashMap<String, String>) -> String {
     out
 }
 
+pub fn launch_log_path(dir: &Path) -> Result<PathBuf> {
+    let logs_dir = dir.join("logs");
+    fs::create_dir_all(&logs_dir)?;
+    Ok(logs_dir.join("launcher-latest.log"))
+}
+
 pub fn launch_game(
     dir: &Path,
     manifest: &Manifest,
     settings: &LaunchSettings,
     java: &Path,
-) -> Result<()> {
+) -> Result<std::process::Child> {
     let profile_id = crate::version_profile::find_profile_id(dir, &manifest.mc_version)?;
     let profile = crate::version_profile::merge_profile(dir, &profile_id)?;
 
@@ -438,12 +444,19 @@ pub fn launch_game(
         .arg(SERVER_IP)
         .arg("--port")
         .arg(SERVER_PORT.to_string())
-        .current_dir(dir)
-        .stdout(Stdio::null())
-        .stderr(Stdio::null());
+        .current_dir(dir);
 
-    cmd.spawn()
+    let log_path = launch_log_path(dir)?;
+    let log_out = fs::File::create(&log_path)
+        .map_err(|e| anyhow!("Не удалось создать файл лога: {}", e))?;
+    let log_err = log_out
+        .try_clone()
+        .map_err(|e| anyhow!("Не удалось создать файл лога: {}", e))?;
+    cmd.stdout(Stdio::from(log_out)).stderr(Stdio::from(log_err));
+
+    let child = cmd
+        .spawn()
         .map_err(|e| anyhow!("Не удалось запустить Minecraft: {}", e))?;
 
-    Ok(())
+    Ok(child)
 }
