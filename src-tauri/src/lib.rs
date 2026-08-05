@@ -102,8 +102,37 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
     let _ = app.emit("launch-progress", LaunchProgress::Ready);
 
     let dir = launcher::game_dir().map_err(|e| emit_err(&app, e.to_string()))?;
-    launcher::launch_game(&dir, &manifest, &settings, &java_windowed)
+    let mut child = launcher::launch_game(&dir, &manifest, &settings, &java_windowed)
         .map_err(|e| emit_err(&app, e.to_string()))?;
+
+    // Give the JVM a few seconds — if it crashes immediately (bad
+    // classpath, missing library, etc.) we can catch that and show the
+    // real reason instead of silently sitting on "Идёт запуск...".
+    tokio::time::sleep(std::time::Duration::from_secs(4)).await;
+    if let Ok(Some(status)) = child.try_wait() {
+        let log_path = launcher::launch_log_path(&dir).ok();
+        let tail = log_path
+            .as_ref()
+            .and_then(|p| std::fs::read_to_string(p).ok())
+            .map(|s| {
+                s.chars()
+                    .rev()
+                    .take(1500)
+                    .collect::<Vec<_>>()
+                    .into_iter()
+                    .rev()
+                    .collect::<String>()
+            })
+            .unwrap_or_default();
+        return Err(emit_err(
+            &app,
+            format!(
+                "Minecraft закрылся сразу после запуска (код {:?}).\n{}",
+                status.code(),
+                tail.trim()
+            ),
+        ));
+    }
 
     let _ = app.emit("launch-progress", LaunchProgress::Launching);
     Ok(())
