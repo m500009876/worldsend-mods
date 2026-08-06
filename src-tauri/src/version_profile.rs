@@ -272,12 +272,14 @@ pub fn merge_profile(dir: &Path, profile_id: &str) -> Result<MergedProfile> {
                 if !rules_allow(&lib.rules) {
                     continue;
                 }
-                let key = lib
-                    .name
-                    .split(':')
-                    .take(2)
-                    .collect::<Vec<_>>()
-                    .join(":");
+                let name_parts: Vec<&str> = lib.name.split(':').collect();
+                let key = if name_parts.len() >= 4 {
+                    format!("{}:{}:{}", name_parts[0], name_parts[1], name_parts[3])
+                } else if name_parts.len() >= 2 {
+                    format!("{}:{}", name_parts[0], name_parts[1])
+                } else {
+                    lib.name.clone()
+                };
 
                 let resolved = lib
                     .downloads
