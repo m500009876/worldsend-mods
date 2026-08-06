@@ -307,11 +307,19 @@ pub async fn ensure_loader_installed(
 
     let _ = fs::remove_file(&installer_path);
 
+    let installer_log_path = dir.join("logs").join("installer-latest.log");
+    if let Some(parent) = installer_log_path.parent() {
+        let _ = fs::create_dir_all(parent);
+    }
+    let full_log = format!(
+        "=== stdout ===\n{}\n=== stderr ===\n{}",
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let _ = fs::write(&installer_log_path, &full_log);
+
     if !output.status.success() {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        let stdout = String::from_utf8_lossy(&output.stdout);
-        let combined = format!("{stdout}\n{stderr}");
-        let tail: String = combined
+        let tail: String = full_log
             .chars()
             .rev()
             .take(600)
@@ -327,8 +335,33 @@ pub async fn ensure_loader_installed(
         ));
     }
 
+    let lwjgl_present = walk_has_jar(&dir.join("libraries").join("org").join("lwjgl"));
+    if !lwjgl_present {
+        return Err(anyhow!(
+            "Установщик сообщил об успехе, но LWJGL не найден в libraries/org/lwjgl — часть файлов не скачалась (возможно, антивирус/файрвол блокирует libraries.minecraft.net). Полный лог: {}",
+            installer_log_path.display()
+        ));
+    }
+
     fs::write(&marker, b"ok")?;
     Ok(())
+}
+
+fn walk_has_jar(dir: &Path) -> bool {
+    let Ok(entries) = fs::read_dir(dir) else {
+        return false;
+    };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            if walk_has_jar(&path) {
+                return true;
+            }
+        } else if path.extension().map(|e| e == "jar").unwrap_or(false) {
+            return true;
+        }
+    }
+    false
 }
 
 fn substitute(template: &str, vars: &HashMap<String, String>) -> String {
