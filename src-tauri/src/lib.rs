@@ -83,11 +83,17 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
         .await
         .map_err(|e| emit_err(&app, format!("Не удалось получить сборку: {}", e)))?;
 
+    let dir = launcher::game_dir().map_err(|e| emit_err(&app, e.to_string()))?;
+
     let (java_windowed, java_console) = runtime::ensure_java_installed(&app)
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
     launcher::ensure_loader_installed(&app, &manifest, &java_console)
+        .await
+        .map_err(|e| emit_err(&app, e.to_string()))?;
+
+    launcher::ensure_vanilla_libraries_installed(&app, &dir, &manifest.mc_version)
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
@@ -101,13 +107,9 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
 
     let _ = app.emit("launch-progress", LaunchProgress::Ready);
 
-    let dir = launcher::game_dir().map_err(|e| emit_err(&app, e.to_string()))?;
     let mut child = launcher::launch_game(&dir, &manifest, &settings, &java_windowed)
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
-    // Give the JVM a few seconds — if it crashes immediately (bad
-    // classpath, missing library, etc.) we can catch that and show the
-    // real reason instead of silently sitting on "Идёт запуск...".
     tokio::time::sleep(std::time::Duration::from_secs(4)).await;
     if let Ok(Some(status)) = child.try_wait() {
         let log_path = launcher::launch_log_path(&dir).ok();
