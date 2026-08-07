@@ -97,6 +97,10 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
+    launcher::ensure_assets_installed(&app, &dir, &manifest.mc_version)
+        .await
+        .map_err(|e| emit_err(&app, e.to_string()))?;
+
     launcher::ensure_overrides_installed(&app, &manifest)
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
