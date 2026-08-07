@@ -8,6 +8,33 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 use tauri::{AppHandle, Emitter};
+use serde::Deserialize;
+use serde_json::Value;
+
+#[derive(Deserialize)]
+struct VanillaArtifact {
+    path: String,
+    url: String,
+}
+
+#[derive(Deserialize)]
+struct VanillaLibDownloads {
+    artifact: Option<VanillaArtifact>,
+}
+
+#[derive(Deserialize)]
+struct VanillaLibrary {
+    name: String,
+    downloads: Option<VanillaLibDownloads>,
+    #[serde(default)]
+    rules: Option<Vec<Value>>,
+}
+
+#[derive(Deserialize)]
+struct VanillaVersionJson {
+    #[serde(default)]
+    libraries: Vec<VanillaLibrary>,
+}
 
 pub fn game_dir() -> Result<PathBuf> {
     let home = dirs::home_dir().ok_or_else(|| anyhow!("Не удалось определить домашнюю папку"))?;
@@ -245,6 +272,67 @@ pub async fn ensure_overrides_installed(app: &AppHandle, manifest: &Manifest) ->
     Ok(())
 }
 
+/// The NeoForge/Forge installer's --installClient only fetches the
+/// client.jar and NeoForge's own libraries — it does NOT walk the vanilla
+/// version JSON's own "libraries" list (LWJGL, JOML, oshi, natives, ...).
+/// A real launcher (like the official one) is expected to do that part
+/// itself, so we do it here explicitly. Safe to call every launch — it
+/// skips anything already on disk, so it's a no-op after the first run
+/// (and self-heals if a previous run left something missing, e.g. from
+/// a firewall hiccup).
+pub async fn ensure_vanilla_libraries_installed(
+    app: &AppHandle,
+    dir: &Path,
+    mc_version: &str,
+) -> Result<()> {
+    let json_path = dir
+        .join("versions")
+        .join(mc_version)
+        .join(format!("{}.json", mc_version));
+    if !json_path.exists() {
+        return Ok(());
+    }
+
+    let text = fs::read_to_string(&json_path)?;
+    let parsed: VanillaVersionJson = serde_json::from_str(&text)
+        .map_err(|e| anyhow!("Не удалось разобрать {}: {}", json_path.display(), e))?;
+
+    let client = reqwest::Client::builder()
+        .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
+        .build()?;
+    let libraries_dir = dir.join("libraries");
+
+    let total = parsed.libraries.len();
+    for (i, lib) in parsed.libraries.iter().enumerate() {
+        if !crate::version_profile::rules_allow(&lib.rules) {
+            continue;
+        }
+        let Some(artifact) = lib.downloads.as_ref().and_then(|d| d.artifact.as_ref()) else {
+            continue;
+        };
+        let dest = libraries_dir.join(&artifact.path);
+        if dest.exists() {
+            continue;
+        }
+
+        emit(
+            app,
+            LaunchProgress::Downloading {
+                name: format!("Библиотеки Minecraft ({}/{})", i + 1, total),
+                downloaded: 0,
+                total: None,
+            },
+        );
+
+        download_to_file(app, &client, &artifact.url, &dest, &lib.name)
+            .await
+            .map_err(|e| anyhow!("Не удалось скачать библиотеку {}: {}", lib.name, e))?;
+    }
+
+    Ok(())
+}
+
 pub async fn ensure_loader_installed(
     app: &AppHandle,
     manifest: &Manifest,
@@ -335,33 +423,8 @@ pub async fn ensure_loader_installed(
         ));
     }
 
-    let lwjgl_present = walk_has_jar(&dir.join("libraries").join("org").join("lwjgl"));
-    if !lwjgl_present {
-        return Err(anyhow!(
-            "Установщик сообщил об успехе, но LWJGL не найден в libraries/org/lwjgl — часть файлов не скачалась (возможно, антивирус/файрвол блокирует libraries.minecraft.net). Полный лог: {}",
-            installer_log_path.display()
-        ));
-    }
-
     fs::write(&marker, b"ok")?;
     Ok(())
-}
-
-fn walk_has_jar(dir: &Path) -> bool {
-    let Ok(entries) = fs::read_dir(dir) else {
-        return false;
-    };
-    for entry in entries.flatten() {
-        let path = entry.path();
-        if path.is_dir() {
-            if walk_has_jar(&path) {
-                return true;
-            }
-        } else if path.extension().map(|e| e == "jar").unwrap_or(false) {
-            return true;
-        }
-    }
-    false
 }
 
 fn substitute(template: &str, vars: &HashMap<String, String>) -> String {
