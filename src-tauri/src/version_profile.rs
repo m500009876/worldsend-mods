@@ -86,7 +86,7 @@ fn current_os_name() -> &'static str {
 /// resolution, demo mode, quick play) — any rule requiring a feature is
 /// treated as not applicable, matching how most non-official launchers
 /// behave since those features aren't used here.
-fn rules_allow(rules: &Option<Vec<Value>>) -> bool {
+pub(crate) fn rules_allow(rules: &Option<Vec<Value>>) -> bool {
     let rules = match rules {
         None => return true,
         Some(r) if r.is_empty() => return true,
