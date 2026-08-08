@@ -4,7 +4,7 @@
   "loader": "NeoForge",
   "loaderVersion": "21.1.236",
   "neoForgeUrl": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.236/neoforge-21.1.236-installer.jar",
-  "publishedAt": "2026-08-08T14:49:46.100Z",
+  "publishedAt": "2026-08-08T15:05:16.276Z",
   "mods": [
     {
       "fileName": "Abandoned-Watchtowers-7.0.1-NeoForge-1.21.1.jar",
@@ -47,6 +47,16 @@
       "required": true
     },
     {
+      "fileName": "additional_attributes-1.21.1-1.2.2.jar",
+      "modId": "additional-attributes",
+      "displayName": "Additional Attributes",
+      "version": "1.2.2",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/additional_attributes-1.21.1-1.2.2.jar",
+      "sha256": "30e14ffa909d027a3126d70a9a3b5f118958f03ef262317907bfbf0cc839c1b9",
+      "fileSizeBytes": 47247,
+      "required": true
+    },
+    {
       "fileName": "alloyed-3.0.11-1.21.1-neoforge.jar",
       "modId": "alloyed",
       "displayName": "Alloyed",
@@ -57,6 +67,16 @@
       "required": true
     },
     {
+      "fileName": "alltheleaks-1.1.11_1.21.1-neoforge.jar",
+      "modId": "alltheleaks",
+      "displayName": "Alltheleaks",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/alltheleaks-1.1.11_1.21.1-neoforge.jar",
+      "sha256": "a5bf9bdb3a52b09b1521cdee46735a6e2265438a5084284d037e0042306bd6bd",
+      "fileSizeBytes": 540482,
+      "required": true
+    },
+    {
       "fileName": "amendments-neoforge-1.21-2.1.7.jar",
       "modId": "amendments",
       "displayName": "Amendments",
@@ -64,6 +84,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/amendments-neoforge-1.21-2.1.7.jar",
       "sha256": "f2ab59fedfbfa09b67c55271599c9e31a2b44cdcbcf60cc2ee70b69c2fe0cf84",
       "fileSizeBytes": 1154863,
+      "required": true
+    },
+    {
+      "fileName": "ancientreforging-1.8.5.jar",
+      "modId": "ancientreforging",
+      "displayName": "Ancientreforging",
+      "version": "1.8.5",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ancientreforging-1.8.5.jar",
+      "sha256": "73d0417b4833b24b01c420f431dca3bfc769e90c271197ba9f7a0955e39beea0",
+      "fileSizeBytes": 297552,
       "required": true
     },
     {
@@ -114,6 +144,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/Apotheosis-1.21.1-8.6.0.jar",
       "sha256": "b9a1b1b34d99a9af4ff507f49d2da81cfafcd40afddad12d137d8da4b5e62a1e",
       "fileSizeBytes": 7111068,
+      "required": true
+    },
+    {
+      "fileName": "ApothicAttributes-1.21.1-2.10.1.jar",
+      "modId": "apothicattributes",
+      "displayName": "ApothicAttributes",
+      "version": "2.10.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ApothicAttributes-1.21.1-2.10.1.jar",
+      "sha256": "484d52a58ba351d8e41775b351dad80f39a5bb4ed415bca67537a7f27de901ba",
+      "fileSizeBytes": 323264,
       "required": true
     },
     {
@@ -177,6 +217,16 @@
       "required": true
     },
     {
+      "fileName": "attributefix-neoforge-1.21.1-21.1.3.jar",
+      "modId": "attributefix",
+      "displayName": "Attributefix",
+      "version": "21.1.3",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/attributefix-neoforge-1.21.1-21.1.3.jar",
+      "sha256": "b2b20f3d44e824071284c14de3f4d3323d420e1c450040b339a5c37d2c382ad4",
+      "fileSizeBytes": 19809,
+      "required": true
+    },
+    {
       "fileName": "azurelib-neo-1.21.1-3.1.11.jar",
       "modId": "azurelib-neo",
       "displayName": "Azurelib Neo",
@@ -184,6 +234,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/azurelib-neo-1.21.1-3.1.11.jar",
       "sha256": "54c3a272716344e214d00ba4c338ce153ef997fe4e70aec3d80ef92037dbd1b1",
       "fileSizeBytes": 877948,
+      "required": true
+    },
+    {
+      "fileName": "BadOptimizations-2.4.1-1.21.1.jar",
+      "modId": "badoptimizations",
+      "displayName": "BadOptimizations",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/BadOptimizations-2.4.1-1.21.1.jar",
+      "sha256": "22e2467892d3706f43d1cf2aa637785bb8601c20b0098a82ab956e6a8fc4d2ba",
+      "fileSizeBytes": 283566,
       "required": true
     },
     {
@@ -217,6 +277,26 @@
       "required": true
     },
     {
+      "fileName": "betterchunkloading-1.21-5.4.jar",
+      "modId": "betterchunkloading",
+      "displayName": "Betterchunkloading",
+      "version": "5.4",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterchunkloading-1.21-5.4.jar",
+      "sha256": "4d13bdaaee282b7c0dcfba5f54e0eff7f0850d95d866ed1935fc2b95e5f626b0",
+      "fileSizeBytes": 52980,
+      "required": true
+    },
+    {
+      "fileName": "betterfpsdist-1.21.1-6.1.jar",
+      "modId": "betterfpsdist",
+      "displayName": "Betterfpsdist",
+      "version": "6.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterfpsdist-1.21.1-6.1.jar",
+      "sha256": "0c9a93977f574563b3fa425a8ea934333ce8ae4e282771dd3bcd4248d56f1b03",
+      "fileSizeBytes": 23505,
+      "required": true
+    },
+    {
       "fileName": "BetterPingDisplay-1.21.1-1.1.jar",
       "modId": "betterpingdisplay",
       "displayName": "BetterPingDisplay",
@@ -224,16 +304,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/BetterPingDisplay-1.21.1-1.1.jar",
       "sha256": "f8388de4831ca70f3e94d98d4655278b514f8589234fa92df0d6b2ff1dff321b",
       "fileSizeBytes": 13871,
-      "required": true
-    },
-    {
-      "fileName": "better_mcdonalds_mod-neoforge-4.4.4-1.21.1.jar",
-      "modId": "better-mcdonalds-mod",
-      "displayName": "Better Mcdonalds Mod",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/better_mcdonalds_mod-neoforge-4.4.4-1.21.1.jar",
-      "sha256": "f33c6520800d92819cfb91fdfa773f188ec87b9314075b9811863cbc771fd773",
-      "fileSizeBytes": 155574,
       "required": true
     },
     {
@@ -367,26 +437,6 @@
       "required": true
     },
     {
-      "fileName": "Caupona-1.21.1-0.5.6.jar",
-      "modId": "caupona",
-      "displayName": "Caupona",
-      "version": "0.5.6",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/Caupona-1.21.1-0.5.6.jar",
-      "sha256": "0a54cc4fc5432bca293f64408e53336348714f5ff748cb33fedef7fa15c4da35",
-      "fileSizeBytes": 2559910,
-      "required": true
-    },
-    {
-      "fileName": "CBCmoreshells-1.2.2.jar",
-      "modId": "cbcmoreshells",
-      "displayName": "CBCmoreshells",
-      "version": "1.2.2",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/CBCmoreshells-1.2.2.jar",
-      "sha256": "5199cb51628cb31204f6fbfc5627f50446b0419f91c3b2d90eb941dd5341b8fd",
-      "fileSizeBytes": 2069241,
-      "required": true
-    },
-    {
       "fileName": "chat_heads-0.15.3-neoforge-1.21.jar",
       "modId": "chat-heads",
       "displayName": "Chat Heads",
@@ -424,6 +474,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/citadel-2.7.1-1.21.1_1_.jar",
       "sha256": "a2d4c5dd17375090467db9f66d2aae41e17cb0b324902534580078bd23944925",
       "fileSizeBytes": 3033076,
+      "required": true
+    },
+    {
+      "fileName": "clientcrafting-1.21-2.1.jar",
+      "modId": "clientcrafting",
+      "displayName": "Clientcrafting",
+      "version": "2.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/clientcrafting-1.21-2.1.jar",
+      "sha256": "318a7a7c28b9d5cbeecb69f8e27eb8d1b638d991108316364c64dc8bc5f013c0",
+      "fileSizeBytes": 7144,
       "required": true
     },
     {
@@ -557,16 +617,6 @@
       "required": true
     },
     {
-      "fileName": "crabbersdelight-1.21.1-1.2.6.jar",
-      "modId": "crabbersdelight",
-      "displayName": "Crabbersdelight",
-      "version": "1.2.6",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/crabbersdelight-1.21.1-1.2.6.jar",
-      "sha256": "dde14329fa2ee127a76c27af4dad2608c3405d3639260478f765b5d819f69dc4",
-      "fileSizeBytes": 634794,
-      "required": true
-    },
-    {
       "fileName": "cratedelight-26.07.01-1.21-neoforge.jar",
       "modId": "cratedelight",
       "displayName": "Cratedelight",
@@ -677,16 +727,6 @@
       "required": true
     },
     {
-      "fileName": "creategeoresonance-neoforge-1.21.1-1.1.0.jar",
-      "modId": "creategeoresonance",
-      "displayName": "Creategeoresonance",
-      "version": "1.1.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/creategeoresonance-neoforge-1.21.1-1.1.0.jar",
-      "sha256": "9255d8a95b2316d515bed18aefda95b71046c6126da5beba4205833dfeffed65",
-      "fileSizeBytes": 430960,
-      "required": true
-    },
-    {
       "fileName": "createoreexcavation-1.21-1.6.8.jar",
       "modId": "createoreexcavation",
       "displayName": "Createoreexcavation",
@@ -794,6 +834,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/croptopiadelight-1.0.1.jar",
       "sha256": "cbae16cb8c8f064bb8c13698dbfd1d7c894ae0e8ae55c752e2dff56466c3979c",
       "fileSizeBytes": 96487,
+      "required": true
+    },
+    {
+      "fileName": "cullleaves-neoforge-4.1.1-1.21.1.jar",
+      "modId": "cullleaves",
+      "displayName": "Cullleaves",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/cullleaves-neoforge-4.1.1-1.21.1.jar",
+      "sha256": "6e860e8aa56dbc8bfdad0d2d3591bbc2e491bbf38fae5e19892460d54bac0df3",
+      "fileSizeBytes": 94735,
       "required": true
     },
     {
@@ -947,6 +997,36 @@
       "required": true
     },
     {
+      "fileName": "efiscompat-3.1.0.jar",
+      "modId": "efiscompat",
+      "displayName": "Efiscompat",
+      "version": "3.1.0",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/efiscompat-3.1.0.jar",
+      "sha256": "5d6232d7468b005e9dbcaf9c63ad00fde40b54955dc1aa3938daebdddb1a15c5",
+      "fileSizeBytes": 291013,
+      "required": true
+    },
+    {
+      "fileName": "efweaponscompat-1.0.0.jar",
+      "modId": "efweaponscompat",
+      "displayName": "Efweaponscompat",
+      "version": "1.0.0",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/efweaponscompat-1.0.0.jar",
+      "sha256": "1a8220f6c445e7ee26178d47498617c8c0d39c86f3bd6f36aca6746b7dc3347c",
+      "fileSizeBytes": 169184,
+      "required": true
+    },
+    {
+      "fileName": "embeddium-1.0.15-mc1.21.1.jar",
+      "modId": "embeddium",
+      "displayName": "Embeddium",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/embeddium-1.0.15-mc1.21.1.jar",
+      "sha256": "3aac4c4c6e82d78d8dda4c611d68c672d1061b42bb6954331e3c2e7f14c451e1",
+      "fileSizeBytes": 1048745,
+      "required": true
+    },
+    {
       "fileName": "emotecraft-for-MC1.21.1-2.4.12-neoforge.jar",
       "modId": "emotecraft-for",
       "displayName": "Emotecraft For",
@@ -1017,6 +1097,56 @@
       "required": true
     },
     {
+      "fileName": "epic-fight-21.17.3.1-mc1.21.1-neoforge_1_.jar",
+      "modId": "epic-fight",
+      "displayName": "Epic Fight",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-21.17.3.1-mc1.21.1-neoforge_1_.jar",
+      "sha256": "8b882554cf10086398340fbdc741819ee72a801a3adce516c7f4768326a39526",
+      "fileSizeBytes": 8578288,
+      "required": true
+    },
+    {
+      "fileName": "epic-fight-21.17.3.1-mc1.21.1-neoforge.jar",
+      "modId": "epic-fight",
+      "displayName": "Epic Fight",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-21.17.3.1-mc1.21.1-neoforge.jar",
+      "sha256": "8b882554cf10086398340fbdc741819ee72a801a3adce516c7f4768326a39526",
+      "fileSizeBytes": 8578288,
+      "required": true
+    },
+    {
+      "fileName": "epic-fight-dawn-day-21.17.1.0-mc1.21.1-neoforge.jar",
+      "modId": "epic-fight-dawn-day",
+      "displayName": "Epic Fight Dawn Day",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-dawn-day-21.17.1.0-mc1.21.1-neoforge.jar",
+      "sha256": "b9b4571cf3fa15f9bafb88c9a20d92cf1159f8e71f2b5cf221670401b2d5394a",
+      "fileSizeBytes": 21097425,
+      "required": true
+    },
+    {
+      "fileName": "epic-fight-extended-neoforge-1.21.1.jar",
+      "modId": "epic-fight-extended",
+      "displayName": "Epic Fight Extended",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-extended-neoforge-1.21.1.jar",
+      "sha256": "d1f5bc81100184ce013f8677a4e04d69da14db3b0fb708b435a301959a3e2652",
+      "fileSizeBytes": 516448,
+      "required": true
+    },
+    {
+      "fileName": "epicfightcompat-1.1.0-mc1.21.1-neoforge.jar",
+      "modId": "epicfightcompat",
+      "displayName": "Epicfightcompat",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epicfightcompat-1.1.0-mc1.21.1-neoforge.jar",
+      "sha256": "df4df816cf8b8faab48bd0e5ca74b5943a8d00d48e8869136626d3e6598b74fa",
+      "fileSizeBytes": 174506,
+      "required": true
+    },
+    {
       "fileName": "expandeddelight-0.1.4.jar",
       "modId": "expandeddelight",
       "displayName": "Expandeddelight",
@@ -1024,16 +1154,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/expandeddelight-0.1.4.jar",
       "sha256": "35e9f833432a7a7d25c24e85289a6f58e2cbe2e1cf43b9c0cfef7d5752d04394",
       "fileSizeBytes": 547554,
-      "required": true
-    },
-    {
-      "fileName": "explosionoverhaul-0.2.3.0-neoforge-1.21.1.jar",
-      "modId": "explosionoverhaul",
-      "displayName": "Explosionoverhaul",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/explosionoverhaul-0.2.3.0-neoforge-1.21.1.jar",
-      "sha256": "f6f8040cf1a177cc771c2d5f32677323b4bb87b41db210877de0192489ed8af1",
-      "fileSizeBytes": 100092594,
       "required": true
     },
     {
@@ -1057,6 +1177,16 @@
       "required": true
     },
     {
+      "fileName": "fallen_gems_affixes-1.21.1-1.0.0.jar",
+      "modId": "fallen-gems-affixes",
+      "displayName": "Fallen Gems Affixes",
+      "version": "1.0.0",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/fallen_gems_affixes-1.21.1-1.0.0.jar",
+      "sha256": "53aa6202f641ea9148da895b87e2e204d392c1413e3865d03ee737bd63b5304c",
+      "fileSizeBytes": 272778,
+      "required": true
+    },
+    {
       "fileName": "fantasy_armor-neoforge-1.2.4-1.21.1.jar",
       "modId": "fantasy-armor",
       "displayName": "Fantasy Armor",
@@ -1074,16 +1204,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/FarmersDelight-1.21.1-1.3.2.jar",
       "sha256": "8ff438d62e1fce61542945faae45975d823e04bd6e73a07a121ea05ce2f03de7",
       "fileSizeBytes": 3163042,
-      "required": true
-    },
-    {
-      "fileName": "farsight-1.21.1-5.1.jar",
-      "modId": "farsight",
-      "displayName": "Farsight",
-      "version": "5.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/farsight-1.21.1-5.1.jar",
-      "sha256": "741851d107e0e105da6efc863bb1e787a2ab57b70b7086daeee0b325d20afae2",
-      "fileSizeBytes": 388544,
       "required": true
     },
     {
@@ -1174,6 +1294,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/framework-neoforge-1.21.1-0.13.11.jar",
       "sha256": "429ea90a162d7c25c1463ee60979e4d7b1ddb525d9384a3a2a2f45d70bda03f5",
       "fileSizeBytes": 387334,
+      "required": true
+    },
+    {
+      "fileName": "freecam-neoforge-1.3.0-mc1.21.jar",
+      "modId": "freecam",
+      "displayName": "Freecam",
+      "version": "1.21",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/freecam-neoforge-1.3.0-mc1.21.jar",
+      "sha256": "09b865a3987a0f1c87bcc9430550ccc4107729f29bff53a1cd5ab1e9c3d82376",
+      "fileSizeBytes": 1137632,
       "required": true
     },
     {
@@ -1377,16 +1507,6 @@
       "required": true
     },
     {
-      "fileName": "IAS-9.0.7-1.21.1-neoforge_1_.jar",
-      "modId": "ias",
-      "displayName": "IAS",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/IAS-9.0.7-1.21.1-neoforge_1_.jar",
-      "sha256": "d4416098bf982df3e04b145b3a109f7ea914efb7b7a3f5d32e357009d12dc45b",
-      "fileSizeBytes": 301386,
-      "required": true
-    },
-    {
       "fileName": "Iceberg-1.21-neoforge-1.2.4.jar",
       "modId": "iceberg",
       "displayName": "Iceberg",
@@ -1417,13 +1537,13 @@
       "required": true
     },
     {
-      "fileName": "immersivewalk-1.0.3-1.21.1-neoforge.jar",
-      "modId": "immersivewalk",
-      "displayName": "Immersivewalk",
+      "fileName": "ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
+      "modId": "immediatelyfast",
+      "displayName": "ImmediatelyFast",
       "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/immersivewalk-1.0.3-1.21.1-neoforge.jar",
-      "sha256": "755d4b3313e825864db70a5c0eea761960f04dfeb505b5a312b2314cd7f17708",
-      "fileSizeBytes": 8911,
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
+      "sha256": "336df12f099d1a441a3e06850bea86e9c2d0c8bc022d3d9a201870a201562a04",
+      "fileSizeBytes": 361795,
       "required": true
     },
     {
@@ -1487,6 +1607,26 @@
       "required": true
     },
     {
+      "fileName": "invincible-21.14.7.1-mc1.21.1-neoforge.jar",
+      "modId": "invincible",
+      "displayName": "Invincible",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/invincible-21.14.7.1-mc1.21.1-neoforge.jar",
+      "sha256": "b281dbbd0cd017fd9ad312554abf075338eebc6a5b23dca4a3ab1c356b6a8ba0",
+      "fileSizeBytes": 251198,
+      "required": true
+    },
+    {
+      "fileName": "invincible-21.15.8.2-mc1.21.1-neoforge.jar",
+      "modId": "invincible",
+      "displayName": "Invincible",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/invincible-21.15.8.2-mc1.21.1-neoforge.jar",
+      "sha256": "59ecde959881f679c3c2d94771d44e5e5376bfd8b1a144288063f4deb2b8c9f5",
+      "fileSizeBytes": 245153,
+      "required": true
+    },
+    {
       "fileName": "irons_apothic-2.2.1.jar",
       "modId": "irons-apothic",
       "displayName": "Irons Apothic",
@@ -1547,16 +1687,6 @@
       "required": true
     },
     {
-      "fileName": "kawaiidishes-1.13.jar",
-      "modId": "kawaiidishes",
-      "displayName": "Kawaiidishes",
-      "version": "1.13",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/kawaiidishes-1.13.jar",
-      "sha256": "1227f2252c123e0d3cec22282327d5a483d4fe58f865f16d4a86ed93645033f9",
-      "fileSizeBytes": 676834,
-      "required": true
-    },
-    {
       "fileName": "Kleiders-Custom-Renderer-API-7.2.0-1.21.1.jar",
       "modId": "kleiders-custom-renderer-api",
       "displayName": "Kleiders Custom Renderer API",
@@ -1594,16 +1724,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/kubejs-neoforge-2101.7.2-build.368.jar",
       "sha256": "01767bb677a9c4a8f318717c4c21bca7e7ef80995603403a551068a0e064e740",
       "fileSizeBytes": 2281720,
-      "required": true
-    },
-    {
-      "fileName": "legendary_arsenal-2.4-neoforge-1.21.1.jar",
-      "modId": "legendary-arsenal",
-      "displayName": "Legendary Arsenal",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/legendary_arsenal-2.4-neoforge-1.21.1.jar",
-      "sha256": "7c313678759e6e74e3605df86e86efa17efa6178d134939cf6857ca105236977",
-      "fileSizeBytes": 1686118,
       "required": true
     },
     {
@@ -1704,16 +1824,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/lionfishapi-3.1.jar",
       "sha256": "aeebf0692650afbbc78259c0d4e3d5b7edf037707e8ae5d56045066d83a19cf6",
       "fileSizeBytes": 91596,
-      "required": true
-    },
-    {
-      "fileName": "lithium-neoforge-0.15.4-mc1.21.1.jar",
-      "modId": "lithium",
-      "displayName": "Lithium",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/lithium-neoforge-0.15.4-mc1.21.1.jar",
-      "sha256": "488f33216030c1cb0baa33e59de3d657d08d5795a6c2080c8c8bbbc133fc8757",
-      "fileSizeBytes": 774220,
       "required": true
     },
     {
@@ -1837,16 +1947,6 @@
       "required": true
     },
     {
-      "fileName": "meteor_shower-0.0.5-1.21.1-neoforge.jar",
-      "modId": "meteor-shower",
-      "displayName": "Meteor Shower",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/meteor_shower-0.0.5-1.21.1-neoforge.jar",
-      "sha256": "e5c3fbf84e720d7e42ee49d477c7e9811b07efa14e1a0810f58cda7ba196d65e",
-      "fileSizeBytes": 231654,
-      "required": true
-    },
-    {
       "fileName": "minersdelight-1.21.1-1.4.5.jar",
       "modId": "minersdelight",
       "displayName": "Minersdelight",
@@ -1917,16 +2017,6 @@
       "required": true
     },
     {
-      "fileName": "moreculling-neoforge-1.21.1-1.0.8.jar",
-      "modId": "moreculling",
-      "displayName": "Moreculling",
-      "version": "1.0.8",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/moreculling-neoforge-1.21.1-1.0.8.jar",
-      "sha256": "a086b2157458e8e1214232a52a2a92924481fd3fd6620a61a4f23373b557e791",
-      "fileSizeBytes": 332875,
-      "required": true
-    },
-    {
       "fileName": "moredelight-26.05.20a-1.21-neoforge.jar",
       "modId": "moredelight",
       "displayName": "Moredelight",
@@ -1934,16 +2024,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/moredelight-26.05.20a-1.21-neoforge.jar",
       "sha256": "7b261107157f8fc3273bf75707dbf4b32e3f7d4c1ca116f4bad8b45984ccd83a",
       "fileSizeBytes": 141933,
-      "required": true
-    },
-    {
-      "fileName": "MoreSnifferFlowers-1.21.1-neo-6.6.6.jar",
-      "modId": "moresnifferflowers",
-      "displayName": "MoreSnifferFlowers",
-      "version": "6.6.6",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/MoreSnifferFlowers-1.21.1-neo-6.6.6.jar",
-      "sha256": "3ded8a29b15bc29e97bcd8420feca1d0996266637aef35c83f6b7c7bd6d39c0f",
-      "fileSizeBytes": 4142307,
       "required": true
     },
     {
@@ -1987,6 +2067,16 @@
       "required": true
     },
     {
+      "fileName": "neoculus-mc1.21.1-1.8.7.jar",
+      "modId": "neoculus",
+      "displayName": "Neoculus",
+      "version": "1.8.7",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/neoculus-mc1.21.1-1.8.7.jar",
+      "sha256": "3213254321d6b5a76182ad3ec699a91cc13facce0c47c1416dfc680025f4fe44",
+      "fileSizeBytes": 2799219,
+      "required": true
+    },
+    {
       "fileName": "neruina-3.3.3_1.21.1-neoforge.jar",
       "modId": "neruina",
       "displayName": "Neruina",
@@ -1994,6 +2084,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/neruina-3.3.3_1.21.1-neoforge.jar",
       "sha256": "6afd49ea130feaf337a39b12a936c61950da77ca59061d286b3dae67e5a2728e",
       "fileSizeBytes": 852705,
+      "required": true
+    },
+    {
+      "fileName": "NightFall-1.21.1-Neoforge-3.4.0.jar",
+      "modId": "nightfall",
+      "displayName": "NightFall",
+      "version": "3.4.0",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/NightFall-1.21.1-Neoforge-3.4.0.jar",
+      "sha256": "ec66e0b42a0f8561ebbf57af356dfd237be170297cc5e5e712de0bec34a7fa4c",
+      "fileSizeBytes": 52764179,
       "required": true
     },
     {
@@ -2087,16 +2187,6 @@
       "required": true
     },
     {
-      "fileName": "perfectadvancements-1.21.1-1.0.0.jar",
-      "modId": "perfectadvancements",
-      "displayName": "Perfectadvancements",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/perfectadvancements-1.21.1-1.0.0.jar",
-      "sha256": "4e4ac7c9587bb3fbfdcbaeb52edd58b98b4cec4374368acc54a09d6e6441efcd",
-      "fileSizeBytes": 24011,
-      "required": true
-    },
-    {
       "fileName": "pineapple_delight-1.1.4-1.21.1-neoforge.jar",
       "modId": "pineapple-delight",
       "displayName": "Pineapple Delight",
@@ -2117,6 +2207,16 @@
       "required": true
     },
     {
+      "fileName": "Placebo-1.21.1-9.9.1.jar",
+      "modId": "placebo",
+      "displayName": "Placebo",
+      "version": "9.9.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/Placebo-1.21.1-9.9.1.jar",
+      "sha256": "42c90bc43800558b9322bd60faa9011d6694e66a87b7e6b3b9f51fa735b527ea",
+      "fileSizeBytes": 324056,
+      "required": true
+    },
+    {
       "fileName": "Placebo-1.21.1-9.9.2.jar",
       "modId": "placebo",
       "displayName": "Placebo",
@@ -2134,16 +2234,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/player-animation-lib-forge-2.0.4_1.21.1.jar",
       "sha256": "dbe5de45f5cd60c0e5e47af14e6d564534a98456e973cf670cb881f6938eee92",
       "fileSizeBytes": 203149,
-      "required": true
-    },
-    {
-      "fileName": "pointblank-neoforge-1.21.1-2.1.0.jar",
-      "modId": "pointblank",
-      "displayName": "Pointblank",
-      "version": "2.1.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/pointblank-neoforge-1.21.1-2.1.0.jar",
-      "sha256": "97dba6febc5d5aa8b57ca3d40ef7c6aa9fb8dc05c604755d89416cb8bb1856fe",
-      "fileSizeBytes": 19693964,
       "required": true
     },
     {
@@ -2194,16 +2284,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/prometheus-neoforge-1.21-1.2.5.jar",
       "sha256": "41719cf31593b17ba1d4e8bc25c734d49af32077f4aa27f8a8b6d291c2bf8ebb",
       "fileSizeBytes": 1056045,
-      "required": true
-    },
-    {
-      "fileName": "protection_pixel-2.2.1-neoforge-1.21.1.jar",
-      "modId": "protection-pixel",
-      "displayName": "Protection Pixel",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/protection_pixel-2.2.1-neoforge-1.21.1.jar",
-      "sha256": "a496e6263a0c2cd4341f05a1a71085e467cfe85b453a6aef1c38f614b61129f4",
-      "fileSizeBytes": 2608196,
       "required": true
     },
     {
@@ -2277,13 +2357,13 @@
       "required": true
     },
     {
-      "fileName": "reeses-sodium-options-neoforge-2.2.3_mc1.21.1.jar",
-      "modId": "reeses-sodium-options",
-      "displayName": "Reeses Sodium Options",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/reeses-sodium-options-neoforge-2.2.3_mc1.21.1.jar",
-      "sha256": "25812f308a87c04686de6ac9f24a8073101f81864f0eb9abf348f95d73a6629e",
-      "fileSizeBytes": 260876,
+      "fileName": "recipeessentials-1.21.1-4.7.jar",
+      "modId": "recipeessentials",
+      "displayName": "Recipeessentials",
+      "version": "4.7",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/recipeessentials-1.21.1-4.7.jar",
+      "sha256": "d2ab36a95424654bede6fd7aedceefd05912fc12f6de3f8bb0db8b8b245b6f85",
+      "fileSizeBytes": 43983,
       "required": true
     },
     {
@@ -2294,6 +2374,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/refinedstorage-neoforge-2.0.9-1.21.1.jar",
       "sha256": "e9c758dddcdfa9c02a7370ca3f4f972a285a1e38ca434bd1fc15cb223ffa06ab",
       "fileSizeBytes": 4360871,
+      "required": true
+    },
+    {
+      "fileName": "refm-0.3.13-1.21.1.jar",
+      "modId": "refm",
+      "displayName": "Refm",
+      "version": "1.21.1",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/refm-0.3.13-1.21.1.jar",
+      "sha256": "c7ef49618133500735fff5bd2aa7a11f5b1a7457e928f1c5aaf40e5f38f3e79e",
+      "fileSizeBytes": 2841260,
       "required": true
     },
     {
@@ -2367,6 +2457,16 @@
       "required": true
     },
     {
+      "fileName": "rubidium-extra-0.5.7e_mc1.21-build.132.jar",
+      "modId": "rubidium-extra",
+      "displayName": "Rubidium Extra",
+      "version": "1.21",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/rubidium-extra-0.5.7e_mc1.21-build.132.jar",
+      "sha256": "767d649a73832d84ea9c60424b1726e8cb73f527ea09f073cb5ed0a91900f235",
+      "fileSizeBytes": 383418,
+      "required": true
+    },
+    {
       "fileName": "rusticdelight-neoforge-1.21-1.7.0.jar",
       "modId": "rusticdelight",
       "displayName": "Rusticdelight",
@@ -2377,6 +2477,16 @@
       "required": true
     },
     {
+      "fileName": "SBW-Drone-Warfare-NeoForge-1.21.1-1.0.3.jar",
+      "modId": "sbw-drone-warfare",
+      "displayName": "SBW Drone Warfare",
+      "version": "1.0.3",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/SBW-Drone-Warfare-NeoForge-1.21.1-1.0.3.jar",
+      "sha256": "6c86c26248108881caeb6547444dc9d5c60f0e19d11bf343ebacadb4a25918bf",
+      "fileSizeBytes": 20559989,
+      "required": true
+    },
+    {
       "fileName": "sbw_ew_addon-1.0.4-1.21.1-neoforge.jar",
       "modId": "sbw-ew-addon",
       "displayName": "Sbw Ew Addon",
@@ -2384,6 +2494,16 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/sbw_ew_addon-1.0.4-1.21.1-neoforge.jar",
       "sha256": "866e86b50dbd7a8908c37ecf3c0e5492edb58627dd9e49e5ade7d19e36521c49",
       "fileSizeBytes": 1720589,
+      "required": true
+    },
+    {
+      "fileName": "ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
+      "modId": "scalablelux",
+      "displayName": "ScalableLux",
+      "version": "0.6",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
+      "sha256": "0e7f64c0668bd325ccbcd35595bf9a98ca5a9ff0ebf022ec6f85997991d4c883",
+      "fileSizeBytes": 196969,
       "required": true
     },
     {
@@ -2474,36 +2594,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/slimy_stuff-1.21.1-1.1.1.jar",
       "sha256": "c4b97131b8e5e09d6740486c000d440de71c4761b463d5b656e3f3e2e0d8f9f1",
       "fileSizeBytes": 401636,
-      "required": true
-    },
-    {
-      "fileName": "sodium-extra-neoforge-0.9.3-mc1.21.1.jar",
-      "modId": "sodium-extra",
-      "displayName": "Sodium Extra",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/sodium-extra-neoforge-0.9.3-mc1.21.1.jar",
-      "sha256": "fa553bce38bad6fdd478841a270a79a31dc05f87d7892b1cf839850602ac9186",
-      "fileSizeBytes": 465013,
-      "required": true
-    },
-    {
-      "fileName": "sodium-neoforge-0.8.12_mc1.21.1.jar",
-      "modId": "sodium",
-      "displayName": "Sodium",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/sodium-neoforge-0.8.12_mc1.21.1.jar",
-      "sha256": "2f9e69ec9521e657100ef83b3bdf3f18dba6078d57f9853722d7643a577b2266",
-      "fileSizeBytes": 1291418,
-      "required": true
-    },
-    {
-      "fileName": "sodiumdynamiclights-neoforge-1.0.10-1.21.1.jar",
-      "modId": "sodiumdynamiclights",
-      "displayName": "Sodiumdynamiclights",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/sodiumdynamiclights-neoforge-1.0.10-1.21.1.jar",
-      "sha256": "d78002d50865db928fbf2c17c716ffcbbd6d33bff88aa1f0f3a04152a2665e25",
-      "fileSizeBytes": 299353,
       "required": true
     },
     {
@@ -2647,6 +2737,16 @@
       "required": true
     },
     {
+      "fileName": "threadtweak-1.21.1-NeoForge-1.0.0.jar",
+      "modId": "threadtweak",
+      "displayName": "Threadtweak",
+      "version": "1.0.0",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/threadtweak-1.21.1-NeoForge-1.0.0.jar",
+      "sha256": "b8914749c6e321626360df1c588c64d5af30a28a0b2533d388339a2b635524dc",
+      "fileSizeBytes": 19397,
+      "required": true
+    },
+    {
       "fileName": "tlc-neoforge-1.21.1-2.1.0.jar",
       "modId": "tlc",
       "displayName": "Tlc",
@@ -2717,6 +2817,16 @@
       "required": true
     },
     {
+      "fileName": "vanillin-neoforge-1.21.1-1.1.3.jar",
+      "modId": "vanillin",
+      "displayName": "Vanillin",
+      "version": "1.1.3",
+      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/vanillin-neoforge-1.21.1-1.1.3.jar",
+      "sha256": "4ea3fa9e7c33abaf9dc135e88b4c07992c6e8f03d61c828b2c6cdfa6be32957c",
+      "fileSizeBytes": 870344,
+      "required": true
+    },
+    {
       "fileName": "vista-neoforge-1.21.1-5.2.5.jar",
       "modId": "vista",
       "displayName": "Vista",
@@ -2774,16 +2884,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/vortylib-1.2.2-1.21.1.jar",
       "sha256": "de7508c54b28eafac4114f5e7f430a19f842c4359d56db74c9009b037d5b7aac",
       "fileSizeBytes": 66976,
-      "required": true
-    },
-    {
-      "fileName": "waterballoon-neoforge-1.21.1-1.0.0.jar",
-      "modId": "waterballoon",
-      "displayName": "Waterballoon",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/waterballoon-neoforge-1.21.1-1.0.0.jar",
-      "sha256": "f8bf510ff40e1d12f0d6ef126786a966bfaa19c132c8eb3900c1192744b89fe7",
-      "fileSizeBytes": 135482,
       "required": true
     },
     {
@@ -2857,16 +2957,6 @@
       "required": true
     },
     {
-      "fileName": "ysm-2.6.5-neoforge_mc1.21.1-release.jar",
-      "modId": "ysm",
-      "displayName": "Ysm",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ysm-2.6.5-neoforge_mc1.21.1-release.jar",
-      "sha256": "b285c73d4ec010d9a9be3c53c1bee890cf269645be5f1bcf1c27a2e8e82807cb",
-      "fileSizeBytes": 63463229,
-      "required": true
-    },
-    {
       "fileName": "YungsApi-1.21.1-NeoForge-5.1.6.jar",
       "modId": "yungsapi",
       "displayName": "YungsApi",
@@ -2934,296 +3024,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/zipline-neoforge-1.21.1-1.5.0.jar",
       "sha256": "501650ba1fd3e1be57af3d1f41e097ed5ff1231a5a99a5c5e949ee9a48ff7424",
       "fileSizeBytes": 63723,
-      "required": true
-    },
-    {
-      "fileName": "additional_attributes-1.21.1-1.2.2.jar",
-      "modId": "additional-attributes",
-      "displayName": "Additional Attributes",
-      "version": "1.2.2",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/additional_attributes-1.21.1-1.2.2.jar",
-      "sha256": "30e14ffa909d027a3126d70a9a3b5f118958f03ef262317907bfbf0cc839c1b9",
-      "fileSizeBytes": 47247,
-      "required": true
-    },
-    {
-      "fileName": "alltheleaks-1.1.11_1.21.1-neoforge.jar",
-      "modId": "alltheleaks",
-      "displayName": "Alltheleaks",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/alltheleaks-1.1.11_1.21.1-neoforge.jar",
-      "sha256": "a5bf9bdb3a52b09b1521cdee46735a6e2265438a5084284d037e0042306bd6bd",
-      "fileSizeBytes": 540482,
-      "required": true
-    },
-    {
-      "fileName": "ancientreforging-1.8.5.jar",
-      "modId": "ancientreforging",
-      "displayName": "Ancientreforging",
-      "version": "1.8.5",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ancientreforging-1.8.5.jar",
-      "sha256": "73d0417b4833b24b01c420f431dca3bfc769e90c271197ba9f7a0955e39beea0",
-      "fileSizeBytes": 297552,
-      "required": true
-    },
-    {
-      "fileName": "attributefix-neoforge-1.21.1-21.1.3.jar",
-      "modId": "attributefix",
-      "displayName": "Attributefix",
-      "version": "21.1.3",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/attributefix-neoforge-1.21.1-21.1.3.jar",
-      "sha256": "b2b20f3d44e824071284c14de3f4d3323d420e1c450040b339a5c37d2c382ad4",
-      "fileSizeBytes": 19809,
-      "required": true
-    },
-    {
-      "fileName": "BadOptimizations-2.4.1-1.21.1.jar",
-      "modId": "badoptimizations",
-      "displayName": "BadOptimizations",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/BadOptimizations-2.4.1-1.21.1.jar",
-      "sha256": "22e2467892d3706f43d1cf2aa637785bb8601c20b0098a82ab956e6a8fc4d2ba",
-      "fileSizeBytes": 283566,
-      "required": true
-    },
-    {
-      "fileName": "betterchunkloading-1.21-5.4.jar",
-      "modId": "betterchunkloading",
-      "displayName": "Betterchunkloading",
-      "version": "5.4",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterchunkloading-1.21-5.4.jar",
-      "sha256": "4d13bdaaee282b7c0dcfba5f54e0eff7f0850d95d866ed1935fc2b95e5f626b0",
-      "fileSizeBytes": 52980,
-      "required": true
-    },
-    {
-      "fileName": "betterfpsdist-1.21.1-6.1.jar",
-      "modId": "betterfpsdist",
-      "displayName": "Betterfpsdist",
-      "version": "6.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterfpsdist-1.21.1-6.1.jar",
-      "sha256": "0c9a93977f574563b3fa425a8ea934333ce8ae4e282771dd3bcd4248d56f1b03",
-      "fileSizeBytes": 23505,
-      "required": true
-    },
-    {
-      "fileName": "clientcrafting-1.21-2.1.jar",
-      "modId": "clientcrafting",
-      "displayName": "Clientcrafting",
-      "version": "2.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/clientcrafting-1.21-2.1.jar",
-      "sha256": "318a7a7c28b9d5cbeecb69f8e27eb8d1b638d991108316364c64dc8bc5f013c0",
-      "fileSizeBytes": 7144,
-      "required": true
-    },
-    {
-      "fileName": "cullleaves-neoforge-4.1.1-1.21.1.jar",
-      "modId": "cullleaves",
-      "displayName": "Cullleaves",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/cullleaves-neoforge-4.1.1-1.21.1.jar",
-      "sha256": "6e860e8aa56dbc8bfdad0d2d3591bbc2e491bbf38fae5e19892460d54bac0df3",
-      "fileSizeBytes": 94735,
-      "required": true
-    },
-    {
-      "fileName": "efiscompat-3.1.0.jar",
-      "modId": "efiscompat",
-      "displayName": "Efiscompat",
-      "version": "3.1.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/efiscompat-3.1.0.jar",
-      "sha256": "5d6232d7468b005e9dbcaf9c63ad00fde40b54955dc1aa3938daebdddb1a15c5",
-      "fileSizeBytes": 291013,
-      "required": true
-    },
-    {
-      "fileName": "efweaponscompat-1.0.0.jar",
-      "modId": "efweaponscompat",
-      "displayName": "Efweaponscompat",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/efweaponscompat-1.0.0.jar",
-      "sha256": "1a8220f6c445e7ee26178d47498617c8c0d39c86f3bd6f36aca6746b7dc3347c",
-      "fileSizeBytes": 169184,
-      "required": true
-    },
-    {
-      "fileName": "embeddium-1.0.15-mc1.21.1.jar",
-      "modId": "embeddium",
-      "displayName": "Embeddium",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/embeddium-1.0.15-mc1.21.1.jar",
-      "sha256": "3aac4c4c6e82d78d8dda4c611d68c672d1061b42bb6954331e3c2e7f14c451e1",
-      "fileSizeBytes": 1048745,
-      "required": true
-    },
-    {
-      "fileName": "epic-fight-21.17.3.1-mc1.21.1-neoforge.jar",
-      "modId": "epic-fight",
-      "displayName": "Epic Fight",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-21.17.3.1-mc1.21.1-neoforge.jar",
-      "sha256": "8b882554cf10086398340fbdc741819ee72a801a3adce516c7f4768326a39526",
-      "fileSizeBytes": 8578288,
-      "required": true
-    },
-    {
-      "fileName": "epic-fight-dawn-day-21.17.1.0-mc1.21.1-neoforge.jar",
-      "modId": "epic-fight-dawn-day",
-      "displayName": "Epic Fight Dawn Day",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-dawn-day-21.17.1.0-mc1.21.1-neoforge.jar",
-      "sha256": "b9b4571cf3fa15f9bafb88c9a20d92cf1159f8e71f2b5cf221670401b2d5394a",
-      "fileSizeBytes": 21097425,
-      "required": true
-    },
-    {
-      "fileName": "epic-fight-extended-neoforge-1.21.1.jar",
-      "modId": "epic-fight-extended",
-      "displayName": "Epic Fight Extended",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epic-fight-extended-neoforge-1.21.1.jar",
-      "sha256": "d1f5bc81100184ce013f8677a4e04d69da14db3b0fb708b435a301959a3e2652",
-      "fileSizeBytes": 516448,
-      "required": true
-    },
-    {
-      "fileName": "epicfightcompat-1.1.0-mc1.21.1-neoforge.jar",
-      "modId": "epicfightcompat",
-      "displayName": "Epicfightcompat",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/epicfightcompat-1.1.0-mc1.21.1-neoforge.jar",
-      "sha256": "df4df816cf8b8faab48bd0e5ca74b5943a8d00d48e8869136626d3e6598b74fa",
-      "fileSizeBytes": 174506,
-      "required": true
-    },
-    {
-      "fileName": "fallen_gems_affixes-1.21.1-1.0.0.jar",
-      "modId": "fallen-gems-affixes",
-      "displayName": "Fallen Gems Affixes",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/fallen_gems_affixes-1.21.1-1.0.0.jar",
-      "sha256": "53aa6202f641ea9148da895b87e2e204d392c1413e3865d03ee737bd63b5304c",
-      "fileSizeBytes": 272778,
-      "required": true
-    },
-    {
-      "fileName": "freecam-neoforge-1.3.0-mc1.21.jar",
-      "modId": "freecam",
-      "displayName": "Freecam",
-      "version": "1.21",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/freecam-neoforge-1.3.0-mc1.21.jar",
-      "sha256": "09b865a3987a0f1c87bcc9430550ccc4107729f29bff53a1cd5ab1e9c3d82376",
-      "fileSizeBytes": 1137632,
-      "required": true
-    },
-    {
-      "fileName": "ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
-      "modId": "immediatelyfast",
-      "displayName": "ImmediatelyFast",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
-      "sha256": "336df12f099d1a441a3e06850bea86e9c2d0c8bc022d3d9a201870a201562a04",
-      "fileSizeBytes": 361795,
-      "required": true
-    },
-    {
-      "fileName": "invincible-21.15.8.2-mc1.21.1-neoforge.jar",
-      "modId": "invincible",
-      "displayName": "Invincible",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/invincible-21.15.8.2-mc1.21.1-neoforge.jar",
-      "sha256": "59ecde959881f679c3c2d94771d44e5e5376bfd8b1a144288063f4deb2b8c9f5",
-      "fileSizeBytes": 245153,
-      "required": true
-    },
-    {
-      "fileName": "neoculus-mc1.21.1-1.8.7.jar",
-      "modId": "neoculus",
-      "displayName": "Neoculus",
-      "version": "1.8.7",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/neoculus-mc1.21.1-1.8.7.jar",
-      "sha256": "3213254321d6b5a76182ad3ec699a91cc13facce0c47c1416dfc680025f4fe44",
-      "fileSizeBytes": 2799219,
-      "required": true
-    },
-    {
-      "fileName": "NightFall-1.21.1-Neoforge-3.4.0.jar",
-      "modId": "nightfall",
-      "displayName": "NightFall",
-      "version": "3.4.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/NightFall-1.21.1-Neoforge-3.4.0.jar",
-      "sha256": "ec66e0b42a0f8561ebbf57af356dfd237be170297cc5e5e712de0bec34a7fa4c",
-      "fileSizeBytes": 52764179,
-      "required": true
-    },
-    {
-      "fileName": "recipeessentials-1.21.1-4.7.jar",
-      "modId": "recipeessentials",
-      "displayName": "Recipeessentials",
-      "version": "4.7",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/recipeessentials-1.21.1-4.7.jar",
-      "sha256": "d2ab36a95424654bede6fd7aedceefd05912fc12f6de3f8bb0db8b8b245b6f85",
-      "fileSizeBytes": 43983,
-      "required": true
-    },
-    {
-      "fileName": "refm-0.3.13-1.21.1.jar",
-      "modId": "refm",
-      "displayName": "Refm",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/refm-0.3.13-1.21.1.jar",
-      "sha256": "c7ef49618133500735fff5bd2aa7a11f5b1a7457e928f1c5aaf40e5f38f3e79e",
-      "fileSizeBytes": 2841260,
-      "required": true
-    },
-    {
-      "fileName": "rubidium-extra-0.5.7e_mc1.21-build.132.jar",
-      "modId": "rubidium-extra",
-      "displayName": "Rubidium Extra",
-      "version": "1.21",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/rubidium-extra-0.5.7e_mc1.21-build.132.jar",
-      "sha256": "767d649a73832d84ea9c60424b1726e8cb73f527ea09f073cb5ed0a91900f235",
-      "fileSizeBytes": 383418,
-      "required": true
-    },
-    {
-      "fileName": "SBW-Drone-Warfare-NeoForge-1.21.1-1.0.3.jar",
-      "modId": "sbw-drone-warfare",
-      "displayName": "SBW Drone Warfare",
-      "version": "1.0.3",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/SBW-Drone-Warfare-NeoForge-1.21.1-1.0.3.jar",
-      "sha256": "6c86c26248108881caeb6547444dc9d5c60f0e19d11bf343ebacadb4a25918bf",
-      "fileSizeBytes": 20559989,
-      "required": true
-    },
-    {
-      "fileName": "ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
-      "modId": "scalablelux",
-      "displayName": "ScalableLux",
-      "version": "0.6",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
-      "sha256": "0e7f64c0668bd325ccbcd35595bf9a98ca5a9ff0ebf022ec6f85997991d4c883",
-      "fileSizeBytes": 196969,
-      "required": true
-    },
-    {
-      "fileName": "threadtweak-1.21.1-NeoForge-1.0.0.jar",
-      "modId": "threadtweak",
-      "displayName": "Threadtweak",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/threadtweak-1.21.1-NeoForge-1.0.0.jar",
-      "sha256": "b8914749c6e321626360df1c588c64d5af30a28a0b2533d388339a2b635524dc",
-      "fileSizeBytes": 19397,
-      "required": true
-    },
-    {
-      "fileName": "vanillin-neoforge-1.21.1-1.1.3.jar",
-      "modId": "vanillin",
-      "displayName": "Vanillin",
-      "version": "1.1.3",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/vanillin-neoforge-1.21.1-1.1.3.jar",
-      "sha256": "4ea3fa9e7c33abaf9dc135e88b4c07992c6e8f03d61c828b2c6cdfa6be32957c",
-      "fileSizeBytes": 870344,
       "required": true
     }
   ],
