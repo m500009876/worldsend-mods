@@ -4,7 +4,7 @@
   "loader": "NeoForge",
   "loaderVersion": "21.1.236",
   "neoForgeUrl": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.236/neoforge-21.1.236-installer.jar",
-  "publishedAt": "2026-08-08T15:05:16.276Z",
+  "publishedAt": "2026-08-08T15:52:01.245Z",
   "mods": [
     {
       "fileName": "Abandoned-Watchtowers-7.0.1-NeoForge-1.21.1.jar",
@@ -3028,5 +3028,5 @@
     }
   ],
   "overridesUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/overrides.zip",
-  "overridesSha256": "237b018963fb4595e1c10eab43c190db03f537f0004002c48ab76ff397e515c5"
+  "overridesSha256": "e7f9fbd202f9e9e44d2ddcf98a0eb85423d972bc8af9e767cb6e8f3b6930f1d3"
 }
