@@ -4,7 +4,7 @@
   "loader": "NeoForge",
   "loaderVersion": "21.1.236",
   "neoForgeUrl": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.236/neoforge-21.1.236-installer.jar",
-  "publishedAt": "2026-08-08T15:52:01.245Z",
+  "publishedAt": "2026-08-08T17:36:22.196Z",
   "mods": [
     {
       "fileName": "Abandoned-Watchtowers-7.0.1-NeoForge-1.21.1.jar",
@@ -237,16 +237,6 @@
       "required": true
     },
     {
-      "fileName": "BadOptimizations-2.4.1-1.21.1.jar",
-      "modId": "badoptimizations",
-      "displayName": "BadOptimizations",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/BadOptimizations-2.4.1-1.21.1.jar",
-      "sha256": "22e2467892d3706f43d1cf2aa637785bb8601c20b0098a82ab956e6a8fc4d2ba",
-      "fileSizeBytes": 283566,
-      "required": true
-    },
-    {
       "fileName": "bagus_lib-1.21.1-13.25.1.jar",
       "modId": "bagus-lib",
       "displayName": "Bagus Lib",
@@ -274,26 +264,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/bellsandwhistles-0.4.7-1.21.1.jar",
       "sha256": "a438cf2ea3a05120e12342484f1e12ca11526fbf4195d259ce1d7df8a9b3ffca",
       "fileSizeBytes": 193619,
-      "required": true
-    },
-    {
-      "fileName": "betterchunkloading-1.21-5.4.jar",
-      "modId": "betterchunkloading",
-      "displayName": "Betterchunkloading",
-      "version": "5.4",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterchunkloading-1.21-5.4.jar",
-      "sha256": "4d13bdaaee282b7c0dcfba5f54e0eff7f0850d95d866ed1935fc2b95e5f626b0",
-      "fileSizeBytes": 52980,
-      "required": true
-    },
-    {
-      "fileName": "betterfpsdist-1.21.1-6.1.jar",
-      "modId": "betterfpsdist",
-      "displayName": "Betterfpsdist",
-      "version": "6.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/betterfpsdist-1.21.1-6.1.jar",
-      "sha256": "0c9a93977f574563b3fa425a8ea934333ce8ae4e282771dd3bcd4248d56f1b03",
-      "fileSizeBytes": 23505,
       "required": true
     },
     {
@@ -474,16 +444,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/citadel-2.7.1-1.21.1_1_.jar",
       "sha256": "a2d4c5dd17375090467db9f66d2aae41e17cb0b324902534580078bd23944925",
       "fileSizeBytes": 3033076,
-      "required": true
-    },
-    {
-      "fileName": "clientcrafting-1.21-2.1.jar",
-      "modId": "clientcrafting",
-      "displayName": "Clientcrafting",
-      "version": "2.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/clientcrafting-1.21-2.1.jar",
-      "sha256": "318a7a7c28b9d5cbeecb69f8e27eb8d1b638d991108316364c64dc8bc5f013c0",
-      "fileSizeBytes": 7144,
       "required": true
     },
     {
@@ -834,16 +794,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/croptopiadelight-1.0.1.jar",
       "sha256": "cbae16cb8c8f064bb8c13698dbfd1d7c894ae0e8ae55c752e2dff56466c3979c",
       "fileSizeBytes": 96487,
-      "required": true
-    },
-    {
-      "fileName": "cullleaves-neoforge-4.1.1-1.21.1.jar",
-      "modId": "cullleaves",
-      "displayName": "Cullleaves",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/cullleaves-neoforge-4.1.1-1.21.1.jar",
-      "sha256": "6e860e8aa56dbc8bfdad0d2d3591bbc2e491bbf38fae5e19892460d54bac0df3",
-      "fileSizeBytes": 94735,
       "required": true
     },
     {
@@ -1534,16 +1484,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/illager_fortress-1.0.4-neoforge-1.21.1.jar",
       "sha256": "666601690da9f034acb12e4554ae1c26fa24412cd25894d3289567a74562223f",
       "fileSizeBytes": 4395318,
-      "required": true
-    },
-    {
-      "fileName": "ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
-      "modId": "immediatelyfast",
-      "displayName": "ImmediatelyFast",
-      "version": "1.21.1",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ImmediatelyFast-NeoForge-1.6.11-1.21.1.jar",
-      "sha256": "336df12f099d1a441a3e06850bea86e9c2d0c8bc022d3d9a201870a201562a04",
-      "fileSizeBytes": 361795,
       "required": true
     },
     {
@@ -2357,16 +2297,6 @@
       "required": true
     },
     {
-      "fileName": "recipeessentials-1.21.1-4.7.jar",
-      "modId": "recipeessentials",
-      "displayName": "Recipeessentials",
-      "version": "4.7",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/recipeessentials-1.21.1-4.7.jar",
-      "sha256": "d2ab36a95424654bede6fd7aedceefd05912fc12f6de3f8bb0db8b8b245b6f85",
-      "fileSizeBytes": 43983,
-      "required": true
-    },
-    {
       "fileName": "refinedstorage-neoforge-2.0.9-1.21.1.jar",
       "modId": "refinedstorage",
       "displayName": "Refinedstorage",
@@ -2457,16 +2387,6 @@
       "required": true
     },
     {
-      "fileName": "rubidium-extra-0.5.7e_mc1.21-build.132.jar",
-      "modId": "rubidium-extra",
-      "displayName": "Rubidium Extra",
-      "version": "1.21",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/rubidium-extra-0.5.7e_mc1.21-build.132.jar",
-      "sha256": "767d649a73832d84ea9c60424b1726e8cb73f527ea09f073cb5ed0a91900f235",
-      "fileSizeBytes": 383418,
-      "required": true
-    },
-    {
       "fileName": "rusticdelight-neoforge-1.21-1.7.0.jar",
       "modId": "rusticdelight",
       "displayName": "Rusticdelight",
@@ -2494,16 +2414,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/sbw_ew_addon-1.0.4-1.21.1-neoforge.jar",
       "sha256": "866e86b50dbd7a8908c37ecf3c0e5492edb58627dd9e49e5ade7d19e36521c49",
       "fileSizeBytes": 1720589,
-      "required": true
-    },
-    {
-      "fileName": "ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
-      "modId": "scalablelux",
-      "displayName": "ScalableLux",
-      "version": "0.6",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/ScalableLux-neoforge-0.3.0-alpha.0.6-all.jar",
-      "sha256": "0e7f64c0668bd325ccbcd35595bf9a98ca5a9ff0ebf022ec6f85997991d4c883",
-      "fileSizeBytes": 196969,
       "required": true
     },
     {
@@ -2737,16 +2647,6 @@
       "required": true
     },
     {
-      "fileName": "threadtweak-1.21.1-NeoForge-1.0.0.jar",
-      "modId": "threadtweak",
-      "displayName": "Threadtweak",
-      "version": "1.0.0",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/threadtweak-1.21.1-NeoForge-1.0.0.jar",
-      "sha256": "b8914749c6e321626360df1c588c64d5af30a28a0b2533d388339a2b635524dc",
-      "fileSizeBytes": 19397,
-      "required": true
-    },
-    {
       "fileName": "tlc-neoforge-1.21.1-2.1.0.jar",
       "modId": "tlc",
       "displayName": "Tlc",
@@ -2814,16 +2714,6 @@
       "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/vanilladelight-1.21.1-1.0.5a.jar",
       "sha256": "94e2fb1ca229feef2481c9b6db110802e633abb666f578513ff82fe20e4bd614",
       "fileSizeBytes": 420710,
-      "required": true
-    },
-    {
-      "fileName": "vanillin-neoforge-1.21.1-1.1.3.jar",
-      "modId": "vanillin",
-      "displayName": "Vanillin",
-      "version": "1.1.3",
-      "downloadUrl": "https://github.com/m500009876/worldsend-mods/releases/download/mods-storage/vanillin-neoforge-1.21.1-1.1.3.jar",
-      "sha256": "4ea3fa9e7c33abaf9dc135e88b4c07992c6e8f03d61c828b2c6cdfa6be32957c",
-      "fileSizeBytes": 870344,
       "required": true
     },
     {
