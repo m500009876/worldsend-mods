@@ -31,9 +31,29 @@ struct VanillaLibrary {
 }
 
 #[derive(Deserialize)]
+struct VanillaAssetIndexRef {
+    id: String,
+    url: String,
+}
+
+#[derive(Deserialize)]
 struct VanillaVersionJson {
     #[serde(default)]
     libraries: Vec<VanillaLibrary>,
+    #[serde(rename = "assetIndex")]
+    asset_index: Option<VanillaAssetIndexRef>,
+}
+
+#[derive(Deserialize)]
+struct AssetObject {
+    hash: String,
+    #[allow(dead_code)]
+    size: u64,
+}
+
+#[derive(Deserialize)]
+struct AssetIndexJson {
+    objects: HashMap<String, AssetObject>,
 }
 
 pub fn game_dir() -> Result<PathBuf> {
@@ -333,6 +353,98 @@ pub async fn ensure_vanilla_libraries_installed(
     Ok(())
 }
 
+/// Downloads the Minecraft asset index + every referenced asset object
+/// (textures, sounds, lang files, ...) into `assets/indexes` and
+/// `assets/objects`. Without this, `--assetsDir` points at a directory
+/// that either doesn't exist or is empty, and the game fails to boot
+/// immediately with "Directory [...assets] does not exist" (jopt-simple
+/// validates the path before Minecraft's own code even runs) or crashes
+/// shortly after opening a window trying to load missing resources.
+/// Safe to call every launch — skips anything already on disk.
+pub async fn ensure_assets_installed(
+    app: &AppHandle,
+    dir: &Path,
+    mc_version: &str,
+) -> Result<()> {
+    let assets_dir = dir.join("assets");
+    fs::create_dir_all(&assets_dir)?;
+    fs::create_dir_all(assets_dir.join("indexes"))?;
+    fs::create_dir_all(assets_dir.join("objects"))?;
+
+    let json_path = dir
+        .join("versions")
+        .join(mc_version)
+        .join(format!("{}.json", mc_version));
+    if !json_path.exists() {
+        return Ok(());
+    }
+    let text = fs::read_to_string(&json_path)?;
+    let parsed: VanillaVersionJson = serde_json::from_str(&text)
+        .map_err(|e| anyhow!("Не удалось разобрать {}: {}", json_path.display(), e))?;
+    let Some(asset_index_ref) = parsed.asset_index else {
+        return Ok(());
+    };
+
+    let client = reqwest::Client::builder()
+        .user_agent("worldsend-launcher")
+        .connect_timeout(std::time::Duration::from_secs(15))
+        .build()?;
+
+    let index_path = assets_dir
+        .join("indexes")
+        .join(format!("{}.json", asset_index_ref.id));
+    if !index_path.exists() {
+        emit(
+            app,
+            LaunchProgress::Downloading {
+                name: "Индекс ассетов".into(),
+                downloaded: 0,
+                total: None,
+            },
+        );
+        download_to_file(app, &client, &asset_index_ref.url, &index_path, "Индекс ассетов").await?;
+    }
+
+    let index_text = fs::read_to_string(&index_path)?;
+    let index: AssetIndexJson = serde_json::from_str(&index_text)
+        .map_err(|e| anyhow!("Не удалось разобрать индекс ассетов: {}", e))?;
+
+    let objects_dir = assets_dir.join("objects");
+    let total = index.objects.len();
+    let mut done = 0usize;
+    for (name, obj) in index.objects.iter() {
+        done += 1;
+        let hash = &obj.hash;
+        if hash.len() < 2 {
+            continue;
+        }
+        let dest = objects_dir.join(&hash[0..2]).join(hash);
+        if dest.exists() {
+            continue;
+        }
+        if done % 25 == 0 || done == total {
+            emit(
+                app,
+                LaunchProgress::Downloading {
+                    name: format!("Ассеты игры ({}/{})", done, total),
+                    downloaded: 0,
+                    total: None,
+                },
+            );
+        }
+        let url = format!(
+            "https://resources.download.minecraft.net/{}/{}",
+            &hash[0..2],
+            hash
+        );
+        download_to_file(app, &client, &url, &dest, name)
+            .await
+            .map_err(|e| anyhow!("Не удалось скачать ассет {}: {}", name, e))?;
+    }
+
+    Ok(())
+}
+
 pub async fn ensure_loader_installed(
     app: &AppHandle,
     manifest: &Manifest,
@@ -461,6 +573,7 @@ pub fn launch_game(
         .join(classpath_sep);
 
     let assets_dir = dir.join("assets");
+    let _ = fs::create_dir_all(&assets_dir);
     let natives_dir = dir.join("versions").join(&profile_id).join("natives");
     let _ = fs::create_dir_all(&natives_dir);
 
