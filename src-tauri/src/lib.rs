@@ -58,9 +58,6 @@ fn get_settings(app: tauri::AppHandle) -> Result<LaunchSettings, String> {
         }
     }
 
-    // First run — no saved settings yet. Pick a RAM default that fits this
-    // player's actual PC instead of a hardcoded number, and save it so it
-    // sticks.
     let total_gb = sysmem::total_ram_gb();
     let settings = LaunchSettings {
         ram_gb: sysmem::recommended_ram_gb(total_gb),
@@ -119,6 +116,10 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
 
+    launcher::ensure_assets_installed(&app, &dir, &manifest.mc_version)
+        .await
+        .map_err(|e| emit_err(&app, e.to_string()))?;
+
     launcher::ensure_overrides_installed(&app, &manifest)
         .await
         .map_err(|e| emit_err(&app, e.to_string()))?;
@@ -160,9 +161,6 @@ async fn start_launch(app: tauri::AppHandle, settings: LaunchSettings) -> Result
 
     let _ = app.emit("launch-progress", LaunchProgress::Launching);
 
-    // Watch the game process in the background and tell the UI the moment
-    // it actually exits, so the "Играть" button only re-enables once
-    // Minecraft is really closed — not on a guess/timeout.
     let watch_app = app.clone();
     std::thread::spawn(move || {
         let code = child.wait().ok().and_then(|status| status.code());
